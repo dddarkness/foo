@@ -1,4 +1,4 @@
-tep 1. Convert your plink bed file to PED file
+Step 1. Convert your plink bed file to PED file
         plink --bfile hgdp_chr22 --recode --tab --out hgdp_chr22
 
 Step 2. Find unlifted SNPs from PED file
