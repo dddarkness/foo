@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 # paths:
 plink='../../plink'
 rmBadLifts='../rmBadLifts.py'
@@ -43,6 +41,8 @@ function convert_PED_to_BED()
 
 function main()
 {
+	set -e
+
 	chr=chr${1}
 	mkdir $workdir
 	cd $workdir
@@ -55,9 +55,18 @@ function main()
 	cd -
 }
 
-if [[ $# -eq 1 ]]; then
-	main $*
-else
-	echo usage: $(basename $0) '<chr number>'
-fi
+function init()
+{
+	which bcftools
+	if [[ $? -ne 0 ]]; then
+		echo bcftools not installed. Stop.
+	else
+		if [[ $# -eq 1 ]]; then
+			main $*
+		else
+			echo usage: $(basename $0) '<chr number>'
+		fi
+	fi
+}
 
+init $*
