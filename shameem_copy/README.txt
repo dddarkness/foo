@@ -15,3 +15,8 @@ Step4. Run liftOverPlink.py and make final output file [PED]
 
 step5. Convert final PED file to BED file [optional]
         plink --file final_chr22 --make-bed --out final_chr22       
+
+
+---
+
+../plink --file work-1074/hgdp_chr21 --extract EA_MTAG_SNPs.txt --keep-fam ../vcf/pops/BRAHUI.txt --freq --make-bed --out work-1074/brahui21freq
