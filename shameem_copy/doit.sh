@@ -56,7 +56,7 @@ function main()
 {
 	set -e
 
-	# mkdir $workdir
+	mkdir $workdir
 	cd $workdir
 
 	for c in $(ls $vcf/hgdp_wgs*${chr}*vcf.gz); do
