@@ -44,15 +44,6 @@ function convert_PED_to_BED()
 	echo TODO
 }
 
-function do_it_without_lifting()
-{
-	chr=$1
-	chrnum=$(echo $chr | sed -e 's/chr//')
-	pop=$2
-	popname=$(basename $pop | sed -e 's/.txt$//')
-	$plink --file merged.out --extract $ea_mtag_snips --keep-fam $pop --freq --make-bed --out ${popname}${chrnum}freq
-}
-
 function merge()
 {
 	ls hgdp_*.map | xargs -l | sed -e 's/.*\./&ped &/' > merge.list
@@ -82,7 +73,7 @@ function main()
 	merge
 
 	for pop in $(ls $pops/*.txt); do
-		do_it_without_lifting $chr $pop
+		plink --file merged.out --extract ../EA_MTAG_SNPs.txt --keep-fam $pop --freq --make-bed --out ${pop}freq
 	done
 
 	cd -
